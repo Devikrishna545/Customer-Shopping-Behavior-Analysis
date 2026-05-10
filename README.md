@@ -1,229 +1,183 @@
-# Customer Behavior & Shopping Analysis
+# Customer Shopping Behavior Analysis
 
-A machine learning project that predicts the most sold product category based on consumer behavior and shopping patterns.
+A data analysis and machine learning project exploring customer shopping patterns and building predictive models from an e-commerce behavior dataset.
 
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange.svg)](https://jupyter.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+## Overview
 
-## 📋 Table of Contents
-- [Overview](#overview)
-- [Problem Statement](#problem-statement)
-- [Objective](#objective)
-- [Dataset](#dataset)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Model Performance](#model-performance)
-- [Technologies Used](#technologies-used)
-- [Project Structure](#project-structure)
-- [Results](#results)
-- [Future Improvements](#future-improvements)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+This repository contains Jupyter notebooks and a CSV dataset for analyzing customer shopping behavior. The main notebook performs:
 
-## 🎯 Overview
+- data loading and validation
+- exploratory data analysis (EDA)
+- feature redundancy and leakage checks
+- classification modeling for **Subscription Status**
+- regression modeling for **Purchase Amount (USD)**
+- interpretation of findings and dataset limitations
 
-This project analyzes consumer behavior and shopping habits to predict product category sales. By leveraging machine learning algorithms, we can help businesses understand customer preferences and optimize their sales strategies based on demographics, purchase behavior, and promotional effectiveness.
+The work is based on the **Consumer Behavior and Shopping Habits Dataset** and focuses on demonstrating sound machine learning workflow inside a notebook environment.
 
-## 📊 Problem Statement
+## Repository Contents
 
-The consumer behavior and shopping dataset contains various features such as customer demographics, purchase behavior, and product details. It provides comprehensive insights into consumers' preferences, tendencies, and patterns during their shopping experiences. 
+- `Consumer_Shopping_Behavior_ML_Analysis.ipynb` — main end-to-end analysis notebook
+- `E-Commerce Dataset ML_New.ipynb` — additional notebook version
+- `E-Commerce Dataset_ML.ipynb` — earlier notebook version
+- `shopping_behavior.csv` — dataset used for the analysis
+- `README.md` — project documentation
 
-This dataset aims to provide an understanding of consumer behavior in purchasing products according to their ages and gender, including the impact of promotional ads and subscription plans. Developing an effective prediction model can enhance sales strategies in the market.
+## Project Goals
 
-## 🎯 Objective
+This project explores two predictive tasks:
 
-To develop a machine learning model that predicts the most sold product category based on customer demographics, shopping patterns, and promotional factors.
+1. **Classification:** predict whether a customer has a subscription (`Subscription Status`)
+2. **Regression:** predict the customer `Purchase Amount (USD)`
 
-## 📁 Dataset
+It also investigates customer attributes such as age, gender, season, payment method, shipping type, purchase frequency, and product category.
 
-**Source:** [Kaggle - Consumer Behavior and Shopping Habits Dataset](https://www.kaggle.com/datasets/zeesolver/consumer-behavior-and-shopping-habits-dataset/data)
+## Dataset
 
-**Dataset Statistics:**
-- **Total Records:** 3,900 rows
-- **Total Features:** 18 columns
-- **Data Types:** Mixed (Numerical and Categorical)
+**Dataset file:** `shopping_behavior.csv`  
+**Rows:** 3,900  
+**Columns:** 18  
+**Type:** mixed numerical and categorical data
 
-### Features Description
+Example features include:
 
-| Feature | Type | Description |
-|---------|------|-------------|
-| Customer ID | Numerical | Unique identifier for each customer |
-| Age | Numerical | Customer's age |
-| Gender | Categorical | Customer's gender |
-| Item Purchased | Categorical | Specific item bought |
-| **Category** | Categorical | **Product category (Target Variable)** |
-| Purchase Amount (USD) | Numerical | Transaction amount in USD |
-| Location | Categorical | Customer's location |
-| Size | Categorical | Product size |
-| Color | Categorical | Product color |
-| Season | Categorical | Season of purchase |
-| Review Rating | Numerical | Customer rating (2.5-5.0) |
-| Subscription Status | Categorical | Active subscription (Yes/No) |
-| Shipping Type | Categorical | Delivery method |
-| Discount Applied | Categorical | Discount status (Yes/No) |
-| Promo Code Used | Categorical | Promo code usage (Yes/No) |
-| Previous Purchases | Numerical | Number of past purchases |
-| Payment Method | Categorical | Payment type used |
-| Frequency of Purchases | Categorical | Purchase frequency pattern |
+- Customer ID
+- Age
+- Gender
+- Item Purchased
+- Category
+- Purchase Amount (USD)
+- Location
+- Size
+- Color
+- Season
+- Review Rating
+- Subscription Status
+- Shipping Type
+- Discount Applied
+- Promo Code Used
+- Previous Purchases
+- Payment Method
+- Frequency of Purchases
 
-## 🛠️ Installation
+## Main Analysis Highlights
 
-### Prerequisites
-- Python 3.8 or higher
-- pip package manager
+The main notebook includes:
 
-### Setup
+- dataset structure inspection and type checks
+- missing-value and duplicate analysis
+- outlier detection using the IQR method
+- distribution checks to assess data realism
+- identification of redundant and leakage-prone features
+- statistical testing for feature-target relationships
+- visual exploration using plots and charts
+- machine learning model building and evaluation
 
-1. Clone the repository
+## Important Findings
+
+From the notebook analysis:
+
+- the dataset contains **3,900 records** and **18 columns**
+- no missing values were found
+- no duplicate rows were found
+- some features show unusually uniform distributions, suggesting the dataset may be synthetic or highly regularized
+- `Promo Code Used` duplicates `Discount Applied`
+- `Item Purchased` maps directly to `Category`, so it can create target leakage in category-related modeling
+- gender appears to be a very strong signal for subscription prediction in this dataset
+
+## Technologies Used
+
+- Python
+- Jupyter Notebook
+- pandas
+- numpy
+- matplotlib
+- seaborn
+- scikit-learn
+- xgboost
+- shap
+- scipy
+
+## How to Run
+
+1. Clone the repository:
+
 ```bash
-git clone https://github.com/Devikrishna545/CustomerBehaviour_ShoppingAnalysis.git
-cd CustomerBehaviour_ShoppingAnalysis
+git clone https://github.com/Devikrishna545/Customer-Shopping-Behavior-Analysis.git
+cd Customer-Shopping-Behavior-Analysis
 ```
 
-2. Create a virtual environment (optional but recommended)
+2. Create and activate a virtual environment (optional):
+
 ```bash
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate
 ```
 
-3. Install required packages
+On Windows:
+
 ```bash
-pip install -r requirements.txt
+venv\Scripts\activate
 ```
 
-### Required Libraries
-```
-pandas
-numpy
-matplotlib
-seaborn
-scikit-learn
-jupyter
+3. Install the required libraries:
+
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn xgboost shap scipy jupyter
 ```
 
-## 🚀 Usage
+4. Launch Jupyter Notebook:
 
-1. Launch Jupyter Notebook
 ```bash
 jupyter notebook
 ```
 
-2. Open the main notebook
-```
-E-Commerce Dataset ML_New.ipynb
-```
+5. Open and run:
 
-3. Run all cells sequentially to:
-   - Load and explore the dataset
-   - Perform data preprocessing
-   - Conduct feature selection
-   - Train the model
-   - Evaluate model performance
-
-## 📈 Model Performance
-
-### Algorithms Used
-
-1. **Feature Selection:**
-   - Random Forest Classifier
-   - Lasso Regression
-
-2. **Classification Model:**
-   - Random Forest Classifier
-
-### Results
-
-- **Accuracy:** 84.5%
-- **Model:** Random Forest Classifier
-
-### Key Insights
-
-- The model successfully predicts product categories with high accuracy
-- Random Forest proved effective for handling mixed data types
-- Feature selection improved model performance and interpretability
-
-## 💻 Technologies Used
-
-- **Programming Language:** Python 3.8+
-- **Data Analysis:** Pandas, NumPy
-- **Visualization:** Matplotlib, Seaborn
-- **Machine Learning:** Scikit-learn
-- **Development Environment:** Jupyter Notebook
-
-## 📂 Project Structure
-
-```
-CustomerBehaviour_ShoppingAnalysis/
-│
-├── E-Commerce Dataset ML_New.ipynb  # Main analysis notebook
-├── shopping_behavior.csv             # Dataset (not included in repo)
-├── README.md                          # Project documentation
-├── requirements.txt                   # Python dependencies
-├── .gitignore                        # Git ignore file
-│
-└── results/                          # (Optional) Model outputs and visualizations
-    ├── models/                       # Saved models
-    └── figures/                      # Generated plots
+```text
+Consumer_Shopping_Behavior_ML_Analysis.ipynb
 ```
 
-## 🔍 Results
+## Suggested Project Structure
 
-The project successfully:
-- ✅ Analyzed 3,900 customer records across 18 features
-- ✅ Identified key factors influencing category purchases
-- ✅ Achieved 84.5% prediction accuracy
-- ✅ Provided actionable insights for sales strategy optimization
+```text
+Customer-Shopping-Behavior-Analysis/
+├── Consumer_Shopping_Behavior_ML_Analysis.ipynb
+├── E-Commerce Dataset ML_New.ipynb
+├── E-Commerce Dataset_ML.ipynb
+├── shopping_behavior.csv
+└── README.md
+```
 
-### Key Findings
+## Use Cases
 
-- Category distribution shows Clothing as the most purchased category (1,737 items)
-- Customer demographics significantly influence purchase patterns
-- Promotional factors (discounts, promo codes) impact buying behavior
-- Subscription status correlates with purchase frequency
+This project can be useful for:
 
-## 🔮 Future Improvements
+- learning applied machine learning with tabular retail data
+- practicing exploratory data analysis in Jupyter
+- understanding feature leakage and dataset quality issues
+- building customer behavior prediction workflows
+- portfolio demonstration for data science and machine learning projects
 
-- [ ] Implement additional classification algorithms (XGBoost, LightGBM)
-- [ ] Perform hyperparameter tuning for better accuracy
-- [ ] Add cross-validation for robust model evaluation
-- [ ] Create interactive visualizations with Plotly/Dash
-- [ ] Deploy model as a web application
-- [ ] Incorporate time-series analysis for seasonal trends
-- [ ] Add customer segmentation analysis
-- [ ] Implement recommendation system
+## Limitations
 
-## 🤝 Contributing
+The notebook explicitly notes that the dataset appears to have several synthetic-like characteristics, including highly uniform distributions. Because of that, results should be interpreted as a demonstration of workflow and methodology rather than a production-grade business model.
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+## Future Improvements
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Possible next steps include:
 
-## 📄 License
+- adding a `requirements.txt` file
+- exporting plots or model artifacts to a results folder
+- comparing more classification and regression models
+- improving notebook organization and markdown explanations
+- turning the notebook into a reusable Python pipeline or app
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## Author
 
-## 📧 Contact
+**Devikrishna545**  
+GitHub: https://github.com/Devikrishna545
 
-**Devikrishna545**
+## Repository Link
 
-- GitHub: [@Devikrishna545](https://github.com/Devikrishna545)
-- Project Link: [https://github.com/Devikrishna545/CustomerBehaviour_ShoppingAnalysis](https://github.com/Devikrishna545/CustomerBehaviour_ShoppingAnalysis)
-
-## 🙏 Acknowledgments
-
-- Dataset provided by [Kaggle - zeesolver](https://www.kaggle.com/datasets/zeesolver/consumer-behavior-and-shopping-habits-dataset/data)
-- Inspiration from e-commerce analytics and consumer behavior research
-- Open-source community for excellent ML libraries
-
----
-
-**Note:** Download the dataset from the Kaggle link provided above and place it in the project root directory before running the notebook.
-
-⭐ If you find this project helpful, please consider giving it a star!
+https://github.com/Devikrishna545/Customer-Shopping-Behavior-Analysis
