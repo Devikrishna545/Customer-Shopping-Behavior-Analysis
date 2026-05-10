@@ -73,6 +73,32 @@ The main notebook includes:
 - visual exploration using plots and charts
 - machine learning model building and evaluation
 
+## What Was Missed in the Earlier Analysis
+
+Compared with the earlier notebook versions, the newer analysis improves the project by covering several important points that were previously missing or not clearly addressed:
+
+- **Data quality validation:** the new notebook explicitly checks for missing values, duplicate rows, and duplicate customer IDs before modeling.
+- **Outlier inspection:** numerical features are reviewed with the IQR method and box plots instead of moving directly into modeling.
+- **Dataset realism check:** the analysis now examines unusually uniform distributions and recognizes that the dataset may be synthetic or artificially regular.
+- **Feature redundancy detection:** it identifies that `Promo Code Used` is identical to `Discount Applied` and removes that redundancy.
+- **Leakage detection:** it recognizes that `Item Purchased` maps directly to `Category`, which would create target leakage if used improperly.
+- **Statistical testing:** instead of relying only on visuals, the notebook now uses chi-square tests and Mann-Whitney U tests to assess which features actually relate to the target.
+- **More honest interpretation:** the updated analysis does not present the dataset as fully realistic business data and instead discusses its limitations clearly.
+- **Dual-task framing:** the notebook expands beyond a single prediction goal and separates the work into a classification task and a regression task.
+
+## What I Learned from the New Analysis
+
+The updated analysis leads to several important lessons:
+
+- **Good ML starts with data checking, not modeling first.** Verifying missing data, duplicates, and suspicious patterns is essential before training any model.
+- **High model performance can be misleading** when the dataset contains leakage, redundancy, or synthetic-like structure.
+- **Feature engineering must include feature removal, not just feature creation.** Removing duplicated or leakage-prone columns improves the credibility of the workflow.
+- **Statistical significance and practical usefulness are not always the same.** Some variables may look interesting visually but provide little real predictive value.
+- **Gender is a dominant signal for subscription prediction in this dataset,** while many other features appear weak or non-significant.
+- **Uniform distributions can be a warning sign** that a dataset may not reflect real-world consumer behavior.
+- **Interpretability matters.** It is important not only to build models, but also to explain why certain features matter and where the data may be flawed.
+- **A stronger project is one that acknowledges limitations honestly.** The new notebook is better because it explains where the analysis is strong and where the dataset is weak.
+
 ## Important Findings
 
 From the notebook analysis:
